@@ -23,6 +23,8 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.MyViewHold
     private List<Notification> artistList;
     private Context context;
 
+
+
     @NonNull
     @Override
     public ArtistAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
@@ -36,11 +38,23 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.MyViewHold
     public void onBindViewHolder(@NonNull final ArtistAdapter.MyViewHolder holder, int position) {
 
         Notification artist = artistList.get(position);
-       holder.titleSong.setText(artist.getNotificationType());
+        holder.titleSong.setText(artist.getNotificationType());
+
+        if(artist.getNotificationType().equalsIgnoreCase("song-suggest")){
+            Picasso.with(context).load("http://13.127.198.116/storage/"+artist.getSong().getSongImage()).error(R.drawable.music).into(holder.profileIMG);
+
+
+        }else{
+            holder.titleSong.setText(artist.getNotificationMsg());
+            Picasso.with(context).load("http://13.127.198.116/storage/"+artist.getUser().getImage()).error(R.drawable.music).into(holder.profileIMG);
+
+        }
         //holder.titleSong.setText(artist.get);
 
         //Picasso.with(context).load(artist.get).error(R.drawable.pops).into(holder.profileIMG);
-       // Picasso.with(context).load(artist.getImage()).error(R.drawable.music).into(holder.imageView);
+        // Picasso.with(context).load(artist.getImage()).error(R.drawable.music).into(holder.imageView);
+
+
 
 
     }
@@ -59,9 +73,9 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.MyViewHold
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView titleSong,hours;
+        TextView titleSong,hours,textViewNotification;
 
-        ImageView profileIMG,likeIMG ;
+        ImageView profileIMG,likeIMG,notification ;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -69,6 +83,8 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.MyViewHold
             titleSong = itemView.findViewById(R.id.title);
             likeIMG = itemView.findViewById(R.id.likeIMG);
             hours = itemView.findViewById(R.id.hour);
+
+           
 
 
 
