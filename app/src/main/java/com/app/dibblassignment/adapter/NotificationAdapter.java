@@ -36,7 +36,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     public void onBindViewHolder(@NonNull final NotificationAdapter.MyViewHolder holder, int position) {
 
         Notification notification = notificationList.get(position);
-        holder.titleSong.setText(notification.getNotificationType());
+        holder.titleSong.setText(notification.getNotificationMsg());
 
         if(notification.getNotificationType().equalsIgnoreCase("song-suggest")){
             Picasso.with(context).load("http://13.127.198.116/storage/"+notification.getSong().getSongImage()).error(R.drawable.music).into(holder.profileIMG);
