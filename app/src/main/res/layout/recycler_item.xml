@@ -11,6 +11,11 @@
         android:layout_marginBottom="@dimen/dp_5"
         android:layout_height="wrap_content">
 
+<FrameLayout
+    android:id="@+id/imageView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profileIMG"
@@ -22,9 +27,38 @@
             app:civ_border_width="@dimen/dp_1"
             app:civ_border_color="@color/color_white"/>
 
+
+
+
+
+
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="10dp"
+        android:layout_marginLeft="15dp"
+        android:visibility="gone"
+        android:layout_width="60dp"
+        android:layout_height="60dp">
+
+        <ImageView
+            android:background="@drawable/arman"
+            android:id="@+id/songIMG"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_60"/>
+
+
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>
+
+
+
         <TextView
             android:text="@string/title"
-            android:layout_toRightOf="@id/profileIMG"
+            android:layout_toRightOf="@id/imageView"
             android:id="@+id/title"
             android:textColor="@color/color_white"
             android:layout_toLeftOf="@id/likeIMG"

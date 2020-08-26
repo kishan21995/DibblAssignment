@@ -1,6 +1,8 @@
 package com.app.dibblassignment.adapter;
 
 import android.content.Context;
+import android.graphics.Shader;
+import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,13 +41,17 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         Notification notification = notificationList.get(position);
         holder.titleSong.setText(notification.getNotificationMsg());
 
+
         if(notification.getNotificationType().equalsIgnoreCase("song-suggest")){
             Picasso.with(context).load("http://13.127.198.116/storage/"+notification.getSong().getSongImage()).error(R.drawable.music).into(holder.profileIMG);
 
 
         }else{
+           // .setVisibility(View.VISIBLE);
             holder.titleSong.setText(notification.getNotificationMsg());
-            Picasso.with(context).load("http://13.127.198.116/storage/"+notification.getUser().getImage()).error(R.drawable.music).into(holder.profileIMG);
+       Picasso.with(context).load("http://13.127.198.116/storage/"+notification.getUser().getImage()).error(R.drawable.music).into(holder.profileIMG);
+
+
 
         }
     /*    //holder.titleSong.setText(artist.get);
@@ -74,12 +80,15 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView titleSong,hours,textViewNotification;
 
-        ImageView profileIMG,likeIMG,notification ;
+        ImageView profileIMG,likeIMG,notification,songIMG ;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             profileIMG = itemView.findViewById(R.id.profileIMG);
-           titleSong = itemView.findViewById(R.id.title);
+           // songIMG = itemView.findViewById(R.id.songIMG);
+
+
+            titleSong = itemView.findViewById(R.id.title);
             likeIMG = itemView.findViewById(R.id.likeIMG);
             hours = itemView.findViewById(R.id.hour);
 
