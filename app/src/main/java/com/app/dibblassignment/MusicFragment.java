@@ -40,7 +40,7 @@ public class MusicFragment extends Fragment {
     RecyclerView recyclerView;
     MainActivity mainActivity;
     FragmentMusicBinding fragmentMusicBinding;
-    String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kaWJibC5pblwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU5Nzk5MDk1NCwiZXhwIjoxNTk4NTk1NzU0LCJuYmYiOjE1OTc5OTA5NTQsImp0aSI6IjZ6VmJUUjB2eWkzZW9XWjUiLCJzdWIiOjc1LCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.4rzNIIuzy1XtyqCuL73zChYm0FTzMw_3LMZPrLq5gzo";
+    String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMy4xMjcuMTk4LjExNlwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU5ODM0NzI0MCwiZXhwIjoxNTk4OTUyMDQwLCJuYmYiOjE1OTgzNDcyNDAsImp0aSI6Im1GQ0VweXFoSXY5Y281OTgiLCJzdWIiOjIyLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.mweIYGT562dicreKgLf7EpQKJp3BPMKDAGR0NE8-M9c";
 
 
     public static MusicFragment newInstance() {
@@ -89,7 +89,7 @@ public class MusicFragment extends Fragment {
                 .build();
 
         ApiInterface client = retrofit.create(ApiInterface.class);
-        Call<NotificationResponse> notificationResponseCall = client.notificationList("Bearer "+"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kaWJibC5pblwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU5Nzk5MDk1NCwiZXhwIjoxNTk4NTk1NzU0LCJuYmYiOjE1OTc5OTA5NTQsImp0aSI6IjZ6VmJUUjB2eWkzZW9XWjUiLCJzdWIiOjc1LCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.4rzNIIuzy1XtyqCuL73zChYm0FTzMw_3LMZPrLq5gzo");
+        Call<NotificationResponse> notificationResponseCall = client.notificationList("Bearer "+"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMy4xMjcuMTk4LjExNlwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU5ODM0NzI0MCwiZXhwIjoxNTk4OTUyMDQwLCJuYmYiOjE1OTgzNDcyNDAsImp0aSI6Im1GQ0VweXFoSXY5Y281OTgiLCJzdWIiOjIyLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.mweIYGT562dicreKgLf7EpQKJp3BPMKDAGR0NE8-M9c");
         Util.showProgressDialog(getContext());
         notificationResponseCall.enqueue(new Callback<NotificationResponse>() {
             @Override

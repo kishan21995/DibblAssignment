@@ -10,7 +10,7 @@
 
     <string name="notifications">Notifications</string>
     <string name="recents">Recents</string>
-    <string name="hours">Hours</string>
+    <string name="hours">hrs</string>
     <string name="title">Title</string>
 
 </resources>

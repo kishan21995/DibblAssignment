@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -47,10 +48,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             Picasso.with(context).load("http://13.127.198.116/storage/"+notification.getUser().getImage()).error(R.drawable.music).into(holder.profileIMG);
 
         }
-        //holder.titleSong.setText(artist.get);
+    /*    //holder.titleSong.setText(artist.get);
 
         //Picasso.with(context).load(artist.get).error(R.drawable.pops).into(holder.profileIMG);
-        // Picasso.with(context).load(artist.getImage()).error(R.drawable.music).into(holder.imageView);
+        // Picasso.with(context).load(artist.getImage()).error(R.drawable.music).into(holder.imageView);*/
 
 
 
@@ -78,9 +79,11 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             profileIMG = itemView.findViewById(R.id.profileIMG);
-            titleSong = itemView.findViewById(R.id.title);
+           titleSong = itemView.findViewById(R.id.title);
             likeIMG = itemView.findViewById(R.id.likeIMG);
             hours = itemView.findViewById(R.id.hour);
+
+
 
 
 
