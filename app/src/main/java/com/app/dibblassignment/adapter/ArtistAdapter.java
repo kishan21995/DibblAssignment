@@ -84,7 +84,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.MyViewHold
             likeIMG = itemView.findViewById(R.id.likeIMG);
             hours = itemView.findViewById(R.id.hour);
 
-           
+
 
 
 
