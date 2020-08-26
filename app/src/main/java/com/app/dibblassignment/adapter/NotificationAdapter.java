@@ -12,22 +12,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.app.dibblassignment.R;
-import com.app.dibblassignment.response.Artist;
-import com.app.dibblassignment.response.Notification;
-import com.app.dibblassignment.response.Song;
+import com.app.dibblassignment.models.Notification;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.MyViewHolder> {
-    private List<Notification> artistList;
+public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.MyViewHolder> {
+    private List<Notification> notificationList;
     private Context context;
 
 
 
     @NonNull
     @Override
-    public ArtistAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public NotificationAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View itemView = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.recycler_item, viewGroup, false);
 
@@ -35,18 +33,18 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.MyViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ArtistAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final NotificationAdapter.MyViewHolder holder, int position) {
 
-        Notification artist = artistList.get(position);
-        holder.titleSong.setText(artist.getNotificationType());
+        Notification notification = notificationList.get(position);
+        holder.titleSong.setText(notification.getNotificationType());
 
-        if(artist.getNotificationType().equalsIgnoreCase("song-suggest")){
-            Picasso.with(context).load("http://13.127.198.116/storage/"+artist.getSong().getSongImage()).error(R.drawable.music).into(holder.profileIMG);
+        if(notification.getNotificationType().equalsIgnoreCase("song-suggest")){
+            Picasso.with(context).load("http://13.127.198.116/storage/"+notification.getSong().getSongImage()).error(R.drawable.music).into(holder.profileIMG);
 
 
         }else{
-            holder.titleSong.setText(artist.getNotificationMsg());
-            Picasso.with(context).load("http://13.127.198.116/storage/"+artist.getUser().getImage()).error(R.drawable.music).into(holder.profileIMG);
+            holder.titleSong.setText(notification.getNotificationMsg());
+            Picasso.with(context).load("http://13.127.198.116/storage/"+notification.getUser().getImage()).error(R.drawable.music).into(holder.profileIMG);
 
         }
         //holder.titleSong.setText(artist.get);
@@ -62,12 +60,12 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.MyViewHold
 
     @Override
     public int getItemCount() {
-        return artistList.size();
+        return notificationList.size();
     }
 
-    public ArtistAdapter(List<Notification> artistList, Context context) {
+    public NotificationAdapter(List<Notification> notificationList, Context context) {
 
-        this.artistList = artistList;
+        this.notificationList = notificationList;
         this.context = context;
 
     }

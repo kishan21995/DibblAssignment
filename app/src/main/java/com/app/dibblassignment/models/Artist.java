@@ -1,32 +1,23 @@
 
-package com.app.dibblassignment.response;
+package com.app.dibblassignment.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class User {
+public class Artist {
 
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("role_id")
+    @SerializedName("user_id")
     @Expose
-    private Integer roleId;
+    private Integer userId;
     @SerializedName("name")
     @Expose
     private String name;
-    @SerializedName("email")
+    @SerializedName("image")
     @Expose
-    private String email;
-    @SerializedName("mobile")
-    @Expose
-    private Object mobile;
-    @SerializedName("email_verified_at")
-    @Expose
-    private Object emailVerifiedAt;
-    @SerializedName("mobile_verified_at")
-    @Expose
-    private Object mobileVerifiedAt;
+    private String image;
     @SerializedName("status")
     @Expose
     private Integer status;
@@ -39,9 +30,6 @@ public class User {
     @SerializedName("deleted_at")
     @Expose
     private Object deletedAt;
-    @SerializedName("image")
-    @Expose
-    private String image;
 
     public Integer getId() {
         return id;
@@ -51,12 +39,12 @@ public class User {
         this.id = id;
     }
 
-    public Integer getRoleId() {
-        return roleId;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getName() {
@@ -67,36 +55,12 @@ public class User {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getImage() {
+        return image;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Object getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(Object mobile) {
-        this.mobile = mobile;
-    }
-
-    public Object getEmailVerifiedAt() {
-        return emailVerifiedAt;
-    }
-
-    public void setEmailVerifiedAt(Object emailVerifiedAt) {
-        this.emailVerifiedAt = emailVerifiedAt;
-    }
-
-    public Object getMobileVerifiedAt() {
-        return mobileVerifiedAt;
-    }
-
-    public void setMobileVerifiedAt(Object mobileVerifiedAt) {
-        this.mobileVerifiedAt = mobileVerifiedAt;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Integer getStatus() {
@@ -129,14 +93,6 @@ public class User {
 
     public void setDeletedAt(Object deletedAt) {
         this.deletedAt = deletedAt;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
 }

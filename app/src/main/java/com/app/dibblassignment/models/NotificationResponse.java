@@ -1,5 +1,5 @@
 
-package com.app.dibblassignment.response;
+package com.app.dibblassignment.models;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

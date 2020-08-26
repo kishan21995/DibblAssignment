@@ -15,12 +15,10 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.app.dibblassignment.Util.Util;
-import com.app.dibblassignment.adapter.ArtistAdapter;
+import com.app.dibblassignment.adapter.NotificationAdapter;
 import com.app.dibblassignment.databinding.FragmentMusicBinding;
-import com.app.dibblassignment.response.Artist;
-import com.app.dibblassignment.response.Notification;
-import com.app.dibblassignment.response.NotificationResponse;
-import com.app.dibblassignment.response.Song;
+import com.app.dibblassignment.models.Notification;
+import com.app.dibblassignment.models.NotificationResponse;
 import com.app.dibblassignment.retrofit.ApiInterface;
 
 import java.util.List;
@@ -38,7 +36,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MusicFragment extends Fragment {
 
 
-    ArtistAdapter artistAdapter;
+    NotificationAdapter notificationAdapter;
     RecyclerView recyclerView;
     MainActivity mainActivity;
     FragmentMusicBinding fragmentMusicBinding;
@@ -91,19 +89,19 @@ public class MusicFragment extends Fragment {
                 .build();
 
         ApiInterface client = retrofit.create(ApiInterface.class);
-        Call<NotificationResponse> notificationResponseCall = client.artistList("Bearer "+"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kaWJibC5pblwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU5Nzk5MDk1NCwiZXhwIjoxNTk4NTk1NzU0LCJuYmYiOjE1OTc5OTA5NTQsImp0aSI6IjZ6VmJUUjB2eWkzZW9XWjUiLCJzdWIiOjc1LCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.4rzNIIuzy1XtyqCuL73zChYm0FTzMw_3LMZPrLq5gzo");
+        Call<NotificationResponse> notificationResponseCall = client.notificationList("Bearer "+"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kaWJibC5pblwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU5Nzk5MDk1NCwiZXhwIjoxNTk4NTk1NzU0LCJuYmYiOjE1OTc5OTA5NTQsImp0aSI6IjZ6VmJUUjB2eWkzZW9XWjUiLCJzdWIiOjc1LCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.4rzNIIuzy1XtyqCuL73zChYm0FTzMw_3LMZPrLq5gzo");
         Util.showProgressDialog(getContext());
         notificationResponseCall.enqueue(new Callback<NotificationResponse>() {
             @Override
             public void onResponse(Call<NotificationResponse> call, retrofit2.Response<NotificationResponse> response) {
                 Util.dismissProgressDialog();
                 if (response.body() != null) {
-                   List<Notification> artistList = response.body().getNotifications();
-                    artistAdapter = new ArtistAdapter(artistList,getActivity());
+                   List<Notification> notificationList = response.body().getNotifications();
+                    notificationAdapter = new NotificationAdapter(notificationList,getActivity());
                     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
                     recyclerView.setLayoutManager(layoutManager);
                     recyclerView.setItemAnimator(new DefaultItemAnimator());
-                    recyclerView.setAdapter(artistAdapter);
+                    recyclerView.setAdapter(notificationAdapter);
                 }else {
                     Toast.makeText(mainActivity, "Api failure", Toast.LENGTH_SHORT).show();
                 }
