@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,13 +44,22 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
 
         if(notification.getNotificationType().equalsIgnoreCase("song-suggest")){
-            Picasso.with(context).load("http://13.127.198.116/storage/"+notification.getSong().getSongImage()).error(R.drawable.music).into(holder.profileIMG);
+            Picasso.with(context).load("http://13.127.198.116/storage/"+notification.getSong().getSongImage()).error(R.drawable.music).into(holder.songIMG);
 
+            holder.profileIMG.setVisibility(View.GONE);
+            holder.songIMG.setVisibility(View.VISIBLE);
 
         }else{
            // .setVisibility(View.VISIBLE);
             holder.titleSong.setText(notification.getNotificationMsg());
        Picasso.with(context).load("http://13.127.198.116/storage/"+notification.getUser().getImage()).error(R.drawable.music).into(holder.profileIMG);
+
+            /*holder.profileIMG.setVisibility(View.VISIBLE);
+            holder.songIMG.setVisibility(View.GONE);*/
+
+            holder.songIMG.setVisibility(View.GONE);
+
+
 
 
 
@@ -79,15 +89,15 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView titleSong,hours,textViewNotification;
+        CardView songItem;
 
         ImageView profileIMG,likeIMG,notification,songIMG ;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             profileIMG = itemView.findViewById(R.id.profileIMG);
-           // songIMG = itemView.findViewById(R.id.songIMG);
-
-
+           //songItem = itemView.findViewById(R.id.songItem);
+            songIMG = itemView.findViewById(R.id.songIMG);
             titleSong = itemView.findViewById(R.id.title);
             likeIMG = itemView.findViewById(R.id.likeIMG);
             hours = itemView.findViewById(R.id.hour);
