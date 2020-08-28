@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,12 +21,13 @@ import com.app.dibblassignment.R;
 import com.app.dibblassignment.models.Notification;
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.MyViewHolder> {
     private List<Notification> notificationList;
     private Context context;
-
 
 
     @NonNull
@@ -43,49 +45,32 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         final Notification notification = notificationList.get(position);
         holder.titleSong.setText(notification.getNotificationMsg());
 
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        //sdf.setTime             //set(TimeZone.getTimeZone("GMT")); try {
 
-        if(notification.getNotificationType().equalsIgnoreCase("song-suggest")){
-            Picasso.with(context).load("http://13.127.198.116/storage/"+notification.getSong().getSongImage()).error(R.drawable.music).into(holder.songIMG);
+        Long time = null;
+        try {
+            time = sdf.parse(notificationList.get(position).getCreatedAt()).getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Long now = System.currentTimeMillis();
+
+        String ago = (DateUtils.getRelativeTimeSpanString(time, now, DateUtils.MINUTE_IN_MILLIS).toString());
+        holder.hours.setText(ago);
+
+        if (notification.getNotificationType().equalsIgnoreCase("song-suggest")) {
+            Picasso.with(context).load("http://13.127.198.116/storage/" + notification.getSong().getSongImage()).error(R.drawable.music).into(holder.songIMG);
             holder.profileIMG.setVisibility(View.GONE);
             holder.songIMG.setVisibility(View.VISIBLE);
 
             holder.playBTN.setVisibility(View.VISIBLE);
             holder.likeIMG.setVisibility(View.VISIBLE);
 
-
-
-
-
-      /*      holder.likeIMG.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (notification.getNotificationType().equalsIgnoreCase("0")) {
-                       // holder.likeIMG.setVideoPath(challengeDetails.getVideo());
-
-                        holder.likeIMG.setBackgroundResource(R.drawable.unlikeimg);
-                        holder.unlikeIMG.setVisibility(View.VISIBLE);
-                        holder.likeIMG.setVisibility(View.GONE);
-                        }
-                        else {
-                        holder.likeIMG.setBackgroundResource(R.drawable.likeimg);
-                        holder.unlikeIMG.setVisibility(View.GONE);
-                        holder.likeIMG.setVisibility(View.VISIBLE);
-                         }
-                         }
-            });*/
-
-
-
-
-
-
-
-
-        }else{
+        } else {
 
             holder.titleSong.setText(notification.getNotificationMsg());
-            Picasso.with(context).load("http://13.127.198.116/storage/"+notification.getUser().getImage()).error(R.drawable.music).into(holder.profileIMG);
-
+            Picasso.with(context).load("http://13.127.198.116/storage/" + notification.getUser().getImage()).error(R.drawable.music).into(holder.profileIMG);
 
 
             holder.songIMG.setVisibility(View.GONE);
@@ -94,15 +79,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             holder.playBTN.setVisibility(View.GONE);
 
 
-
-
-
-
-
         }
-
-
-
 
 
     }
@@ -121,10 +98,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView titleSong,hours,textViewNotification;
+        TextView titleSong, hours, textViewNotification;
         CardView songItem;
 
-        ImageView profileIMG,likeIMG,notification,songIMG,playBTN,unlikeIMG ;
+        ImageView profileIMG, likeIMG, notification, songIMG, playBTN, unlikeIMG;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -133,12 +110,14 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             playBTN = itemView.findViewById(R.id.playBTN);
             titleSong = itemView.findViewById(R.id.title);
             likeIMG = itemView.findViewById(R.id.likeIMG);
-          unlikeIMG = itemView.findViewById(R.id.unlikeIMG);
+            //unlikeIMG = itemView.findViewById(R.id.unlikeIMG);
             hours = itemView.findViewById(R.id.hour);
+
+
 
             /*songItem = itemView.findViewById(R.id.songItem);*/
 
- }
+        }
     }
 
 }
