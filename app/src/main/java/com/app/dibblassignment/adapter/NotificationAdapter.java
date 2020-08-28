@@ -56,7 +56,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
 
 
-            holder.likeIMG.setOnClickListener(new View.OnClickListener() {
+      /*      holder.likeIMG.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (notification.getNotificationType().equalsIgnoreCase("0")) {
@@ -65,18 +65,14 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                         holder.likeIMG.setBackgroundResource(R.drawable.unlikeimg);
                         holder.unlikeIMG.setVisibility(View.VISIBLE);
                         holder.likeIMG.setVisibility(View.GONE);
-
-
-                    } else {
+                        }
+                        else {
                         holder.likeIMG.setBackgroundResource(R.drawable.likeimg);
                         holder.unlikeIMG.setVisibility(View.GONE);
                         holder.likeIMG.setVisibility(View.VISIBLE);
-
-
-                    }
-
-                }
-            });
+                         }
+                         }
+            });*/
 
 
 
@@ -137,7 +133,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             playBTN = itemView.findViewById(R.id.playBTN);
             titleSong = itemView.findViewById(R.id.title);
             likeIMG = itemView.findViewById(R.id.likeIMG);
-            unlikeIMG = itemView.findViewById(R.id.unlikeIMG);
+          unlikeIMG = itemView.findViewById(R.id.unlikeIMG);
             hours = itemView.findViewById(R.id.hour);
 
             /*songItem = itemView.findViewById(R.id.songItem);*/
