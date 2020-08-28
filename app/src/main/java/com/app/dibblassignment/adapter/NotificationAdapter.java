@@ -45,9 +45,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         final Notification notification = notificationList.get(position);
         holder.titleSong.setText(notification.getNotificationMsg());
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        //sdf.setTime             //set(TimeZone.getTimeZone("GMT")); try {
 
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         Long time = null;
         try {
             time = sdf.parse(notificationList.get(position).getCreatedAt()).getTime();
@@ -55,9 +55,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             e.printStackTrace();
         }
         Long now = System.currentTimeMillis();
-
         String ago = (DateUtils.getRelativeTimeSpanString(time, now, DateUtils.MINUTE_IN_MILLIS).toString());
         holder.hours.setText(ago);
+
+
 
         if (notification.getNotificationType().equalsIgnoreCase("song-suggest")) {
             Picasso.with(context).load("http://13.127.198.116/storage/" + notification.getSong().getSongImage()).error(R.drawable.music).into(holder.songIMG);
@@ -66,6 +67,39 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
             holder.playBTN.setVisibility(View.VISIBLE);
             holder.likeIMG.setVisibility(View.VISIBLE);
+
+
+
+        /*    public void onLikeClick(View view) {
+                if (clicked) {
+                    imageView.setImageResource(R.drawable.likeimg);
+                    clicked = false;
+                } else {
+                    clicked = true;
+                    imageView.setImageResource(R.drawable.unlikeimg);
+                }
+            }*/
+        holder.likeIMG.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (notification.getNotificationValue().equalsIgnoreCase("0")) {
+                   holder.likeIMG.setImageResource(R.drawable.likeimg);
+
+                } else {
+
+                    holder.likeIMG.setImageResource(R.drawable.unlikeimg);
+                }
+
+            }
+        });
+
+
+
+
+
+
+
 
         } else {
 
