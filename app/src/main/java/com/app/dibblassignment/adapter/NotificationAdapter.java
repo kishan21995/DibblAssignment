@@ -84,11 +84,11 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             public void onClick(View v) {
 
                 if (notification.getNotificationValue().equalsIgnoreCase("0")) {
-                   holder.likeIMG.setImageResource(R.drawable.likeimg);
+                   holder.likeIMG.setImageResource(R.drawable.unlikeimg);
 
                 } else {
 
-                    holder.likeIMG.setImageResource(R.drawable.unlikeimg);
+                    holder.likeIMG.setImageResource(R.drawable.likeimg);
                 }
 
             }
