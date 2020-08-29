@@ -30,4 +30,12 @@ public void setIsLiked(String isLiked) {
 this.isLiked = isLiked;
 }
 
+    public String getToken() {
+        return isLiked;
+    }
+
+    public void setToken(String isLiked) {
+        this.isLiked = isLiked;
+    }
+
 }

@@ -94,7 +94,7 @@
             android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/likeIMG"
+            android:id="@+id/unlikeImage"
             android:layout_width="@dimen/dp_20"
             android:layout_height="@dimen/dp_20"
             android:layout_marginRight="@dimen/dp_15"
@@ -103,15 +103,15 @@
             android:visibility="gone"
            />
 
-            <!--<ImageView
-                android:id="@+id/unlikeIMG"
+            <ImageView
+                android:id="@+id/likeimg"
                 android:visibility="gone"
                 android:layout_width="@dimen/dp_20"
                 android:layout_height="@dimen/dp_20"
                 android:layout_marginRight="@dimen/dp_15"
                 android:layout_marginTop="@dimen/dp_30"
-                android:src="@drawable/unlikeimg"
-                android:onClick="onLikeClick" />-->
+                android:src="@drawable/likeimg"
+               />
 
         </FrameLayout>
 

@@ -28,7 +28,8 @@ import java.util.List;
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.MyViewHolder> {
     private List<Notification> notificationList;
     private Context context;
-
+    LikeInterface likeInterface;
+    int likevalue;
 
     @NonNull
     @Override
@@ -45,8 +46,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         final Notification notification = notificationList.get(position);
         holder.titleSong.setText(notification.getNotificationMsg());
 
-
-
+        //Count hrs
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         Long time = null;
         try {
@@ -68,55 +68,57 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             holder.playBTN.setVisibility(View.VISIBLE);
             holder.likeIMG.setVisibility(View.VISIBLE);
 
+            if (notification.getIsLiked()==0) {
+                holder.unlikeIMG.setVisibility(View.VISIBLE);
+                holder.likeIMG.setVisibility(View.GONE);
+                likevalue = 1;
 
-
-        /*    public void onLikeClick(View view) {
-                if (clicked) {
-                    imageView.setImageResource(R.drawable.likeimg);
-                    clicked = false;
-                } else {
-                    clicked = true;
-                    imageView.setImageResource(R.drawable.unlikeimg);
-                }
-            }*/
-        holder.likeIMG.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (notification.getNotificationValue().equalsIgnoreCase("0")) {
-                   holder.likeIMG.setImageResource(R.drawable.unlikeimg);
-
-                } else {
-
-                    holder.likeIMG.setImageResource(R.drawable.likeimg);
-                }
-
+            } else if(notification.getIsLiked()==1) {
+                holder.unlikeIMG.setVisibility(View.GONE);
+                holder.likeIMG.setVisibility(View.VISIBLE);
+                likevalue=0;
             }
-        });
 
+            holder.unlikeIMG.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    holder.unlikeIMG.setVisibility(View.GONE);
+                    holder.likeIMG.setVisibility(View.VISIBLE);
+                    likevalue = 1;
+                    if(likeInterface != null){
+                        likeInterface.likeItem(likevalue,notification.getId());
+                    }
+                }
+            });
 
+            holder.likeIMG.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
+                    if (notification.getIsLiked()==0) {
+                        holder.unlikeIMG.setVisibility(View.VISIBLE);
+                        holder.likeIMG.setVisibility(View.GONE);
+                        likevalue = 0;
 
+                    }
+                    if(likeInterface != null){
+                        likeInterface.likeItem(likevalue,notification.getId());
+                    }
+                }
+            });
 
-
-
-
-        } else {
+         } else {
 
             holder.titleSong.setText(notification.getNotificationMsg());
             Picasso.with(context).load("http://13.127.198.116/storage/" + notification.getUser().getImage()).error(R.drawable.music).into(holder.profileIMG);
-
 
             holder.songIMG.setVisibility(View.GONE);
 
             holder.playBTN.setVisibility(View.GONE);
             holder.playBTN.setVisibility(View.GONE);
 
-
         }
-
-
-    }
+     }
 
 
     @Override
@@ -132,10 +134,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView titleSong, hours, textViewNotification;
-        CardView songItem;
-
-        ImageView profileIMG, likeIMG, notification, songIMG, playBTN, unlikeIMG;
+         TextView titleSong, hours;
+         ImageView profileIMG, likeIMG, notification, songIMG, playBTN, unlikeIMG;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -143,15 +143,21 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             songIMG = itemView.findViewById(R.id.songIMG);
             playBTN = itemView.findViewById(R.id.playBTN);
             titleSong = itemView.findViewById(R.id.title);
-            likeIMG = itemView.findViewById(R.id.likeIMG);
-            //unlikeIMG = itemView.findViewById(R.id.unlikeIMG);
+            likeIMG = itemView.findViewById(R.id.likeimg);
+            unlikeIMG = itemView.findViewById(R.id.unlikeImage);
             hours = itemView.findViewById(R.id.hour);
 
+         }
+    }
 
+    public interface LikeInterface {
+        public void likeItem(int likeValue,int notificationid);
 
-            /*songItem = itemView.findViewById(R.id.songItem);*/
+    }
 
-        }
+   public void likeItem(LikeInterface likeInterface) {
+        this.likeInterface = likeInterface;
+
     }
 
 }
