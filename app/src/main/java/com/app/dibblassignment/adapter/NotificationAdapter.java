@@ -71,20 +71,21 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             if (notification.getIsLiked()==0) {
                 holder.unlikeIMG.setVisibility(View.VISIBLE);
                 holder.likeIMG.setVisibility(View.GONE);
-                likevalue = 1;
+               // likevalue = 1;
 
             } else if(notification.getIsLiked()==1) {
                 holder.unlikeIMG.setVisibility(View.GONE);
                 holder.likeIMG.setVisibility(View.VISIBLE);
-                likevalue=0;
+               // likevalue=0;
             }
 
             holder.unlikeIMG.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    likevalue =1;
                     holder.unlikeIMG.setVisibility(View.GONE);
                     holder.likeIMG.setVisibility(View.VISIBLE);
-                    likevalue = 1;
+
                     if(likeInterface != null){
                         likeInterface.likeItem(likevalue,notification.getId());
                     }
@@ -95,15 +96,16 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 @Override
                 public void onClick(View v) {
 
-                    if (notification.getIsLiked()==0) {
-                        holder.unlikeIMG.setVisibility(View.VISIBLE);
-                        holder.likeIMG.setVisibility(View.GONE);
-                        likevalue = 0;
+                    holder.unlikeIMG.setVisibility(View.VISIBLE);
+                    holder.likeIMG.setVisibility(View.GONE);
+                    likevalue = 0;
 
-                    }
+
+
                     if(likeInterface != null){
                         likeInterface.likeItem(likevalue,notification.getId());
                     }
+
                 }
             });
 

@@ -1,4 +1,4 @@
-package com.app.dibblassignment;
+package com.app.dibblassignment.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,7 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.app.dibblassignment.R;
 import com.app.dibblassignment.Util.Util;
+import com.app.dibblassignment.activity.MainActivity;
 import com.app.dibblassignment.adapter.NotificationAdapter;
 import com.app.dibblassignment.databinding.FragmentMusicBinding;
 import com.app.dibblassignment.models.LikeRequest;

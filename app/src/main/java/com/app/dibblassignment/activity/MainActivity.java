@@ -1,4 +1,4 @@
-package com.app.dibblassignment;
+package com.app.dibblassignment.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -9,6 +9,10 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.app.dibblassignment.fragment.HomeFragment;
+import com.app.dibblassignment.fragment.MusicFragment;
+import com.app.dibblassignment.R;
+import com.app.dibblassignment.fragment.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

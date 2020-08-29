@@ -7,8 +7,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/color_black"
-    android:layout_marginBottom="55dp"
-    tools:context=".MusicFragment">
+    android:layout_marginBottom="@dimen/dp_55"
+    tools:context=".fragment.MusicFragment">
 
     <ImageView
         android:layout_width="@dimen/dp_50"
