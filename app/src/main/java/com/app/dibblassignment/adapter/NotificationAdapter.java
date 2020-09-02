@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,7 +25,11 @@ import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.MyViewHolder> {
     private List<Notification> notificationList;
@@ -40,6 +46,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         return new MyViewHolder(itemView);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull final NotificationAdapter.MyViewHolder holder, int position) {
 
@@ -57,6 +64,20 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         Long now = System.currentTimeMillis();
         String ago = (DateUtils.getRelativeTimeSpanString(time, now, DateUtils.MINUTE_IN_MILLIS).toString());
         holder.hours.setText(ago);
+
+
+
+
+          /*  DateTimeFormatter formatter =
+                    DateTimeFormatter.ofPattern("dd/MM/yyyy").withLocale(Locale.US);
+            LocalDate startDate = LocalDate.parse("01/09/1995", formatter);
+            LocalDate endDate = LocalDate.parse("30/11/2018", formatter);
+
+            Period period = Period.between(startDate, endDate);
+            System.out.println(String.format("No Of Years : %d Years, \nNo Of Months : %d Months, \nNo Of Days : %d Days, ",
+                    period.getYears(), period.getMonths(), period.getDays())
+            );*/
+
 
 
 

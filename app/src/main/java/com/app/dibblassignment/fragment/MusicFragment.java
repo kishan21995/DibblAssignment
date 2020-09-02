@@ -39,7 +39,7 @@ public class MusicFragment extends Fragment {
     RecyclerView recyclerView;
     MainActivity mainActivity;
     FragmentMusicBinding fragmentMusicBinding;
-    String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMy4xMjcuMTk4LjExNlwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU5ODM0NzI0MCwiZXhwIjoxNTk4OTUyMDQwLCJuYmYiOjE1OTgzNDcyNDAsImp0aSI6Im1GQ0VweXFoSXY5Y281OTgiLCJzdWIiOjIyLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.mweIYGT562dicreKgLf7EpQKJp3BPMKDAGR0NE8-M9c";
+    String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kaWJibC5pblwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU5OTA0MjUwNiwiZXhwIjoxNTk5NjQ3MzA2LCJuYmYiOjE1OTkwNDI1MDYsImp0aSI6IkZSdWppYUdLUWxqRGJtVlMiLCJzdWIiOjIyLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.cwNavSxfcJTwJ4Xl84h0aM7Al5Phukvyl7qUgrJqDh0";
 
       public static MusicFragment newInstance() {
         MusicFragment fragment = new MusicFragment();
@@ -73,7 +73,7 @@ public class MusicFragment extends Fragment {
                 .build();
 
         ApiInterface client = retrofit.create(ApiInterface.class);
-        Call<NotificationResponse> notificationResponseCall = client.notificationList("Bearer "+"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMy4xMjcuMTk4LjExNlwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU5ODM0NzI0MCwiZXhwIjoxNTk4OTUyMDQwLCJuYmYiOjE1OTgzNDcyNDAsImp0aSI6Im1GQ0VweXFoSXY5Y281OTgiLCJzdWIiOjIyLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.mweIYGT562dicreKgLf7EpQKJp3BPMKDAGR0NE8-M9c");
+        Call<NotificationResponse> notificationResponseCall = client.notificationList("Bearer "+"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kaWJibC5pblwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU5OTA0MjUwNiwiZXhwIjoxNTk5NjQ3MzA2LCJuYmYiOjE1OTkwNDI1MDYsImp0aSI6IkZSdWppYUdLUWxqRGJtVlMiLCJzdWIiOjIyLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.cwNavSxfcJTwJ4Xl84h0aM7Al5Phukvyl7qUgrJqDh0");
         Util.showProgressDialog(getContext());
         notificationResponseCall.enqueue(new Callback<NotificationResponse>() {
             @Override
