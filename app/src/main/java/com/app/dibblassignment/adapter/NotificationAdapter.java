@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
+import android.text.Html;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,7 +52,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     public void onBindViewHolder(@NonNull final NotificationAdapter.MyViewHolder holder, int position) {
 
         final Notification notification = notificationList.get(position);
-        holder.titleSong.setText(notification.getNotificationMsg());
+
+
+        holder.titleSong.setText(Html.fromHtml(notification.getNotificationMsg()));
+
 
         //Count hrs
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
@@ -131,8 +135,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             });
 
          } else {
-
-            holder.titleSong.setText(notification.getNotificationMsg());
+            holder.titleSong.setText(Html.fromHtml(notification.getNotificationMsg()));
             Picasso.with(context).load("http://13.127.198.116/storage/" + notification.getUser().getImage()).error(R.drawable.music).into(holder.profileIMG);
 
             holder.songIMG.setVisibility(View.GONE);
@@ -165,10 +168,15 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             profileIMG = itemView.findViewById(R.id.profileIMG);
             songIMG = itemView.findViewById(R.id.songIMG);
             playBTN = itemView.findViewById(R.id.playBTN);
+
+
             titleSong = itemView.findViewById(R.id.title);
+
+
             likeIMG = itemView.findViewById(R.id.likeimg);
             unlikeIMG = itemView.findViewById(R.id.unlikeImage);
             hours = itemView.findViewById(R.id.hour);
+
 
          }
     }
