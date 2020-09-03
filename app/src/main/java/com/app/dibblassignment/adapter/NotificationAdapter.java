@@ -172,7 +172,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             holder.playBTN.setVisibility(View.VISIBLE);
             holder.likeIMG.setVisibility(View.VISIBLE);
 
-            if (notification.getIsLiked()==0) {
+               holder.cardView.setVisibility(View.VISIBLE);
+
+
+               if (notification.getIsLiked()==0) {
                 holder.unlikeIMG.setVisibility(View.VISIBLE);
                 holder.likeIMG.setVisibility(View.GONE);
                // likevalue = 1;
@@ -229,7 +232,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             holder.playBTN.setVisibility(View.GONE);
             holder.playBTN.setVisibility(View.GONE);
 
-        }
+               holder.cardView.setVisibility(View.GONE);
+
+
+           }
      }
 
 
@@ -247,6 +253,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
          TextView titleSong, hours;
+         CardView cardView;
          ImageView profileIMG, likeIMG, notification, songIMG, playBTN, unlikeIMG;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -258,6 +265,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             likeIMG = itemView.findViewById(R.id.likeimg);
             unlikeIMG = itemView.findViewById(R.id.unlikeImage);
             hours = itemView.findViewById(R.id.hour);
+            cardView=itemView.findViewById(R.id.cardView);
 
 
          }
